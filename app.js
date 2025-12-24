@@ -1,61 +1,73 @@
-// --- 1. THE STORY MODE LOCK ---
+// --- AUTHENTICATION STORY ---
         window.addEventListener('load', async () => {
-            const { value: secret } = await Swal.fire({
-                title: '🎄 Santa\'s Digital Vault 🎄',
-                text: 'Ho ho ho! A spell has been cast on this gift. Only the one who holds the Key of the Frost may enter.',
+            const steps = ['1', '2'];
+            const Queue = Swal.mixin({
+                progressSteps: steps,
+                confirmButtonText: 'Next >',
+                confirmButtonColor: '#ff4757',
+                customClass: { popup: 'swal-glass' }
+            });
+
+            // Step 1: Greeting
+            await Swal.fire({
+                title: '✨ Access Restricted ✨',
+                text: 'This is a secure line. Identity verification required.',
+                icon: 'info',
+                confirmButtonText: 'Verify Me',
+                confirmButtonColor: '#004e92',
+                background: '#fff',
+                allowOutsideClick: false
+            });
+
+            // Step 2: The Puzzle Input
+            const { value: code } = await Swal.fire({
+                title: 'Security Question',
                 input: 'text',
-                inputLabel: 'Whisper the secret word...',
-                inputPlaceholder: 'Type the answer here',
-                imageUrl: 'https://cdn-icons-png.flaticon.com/512/626/626576.png', // Lock Icon
-                imageWidth: 100,
-                imageAlt: 'Christmas Lock',
-                confirmButtonText: 'Unlock Magic ✨',
-                confirmButtonColor: '#c0392b',
+                inputLabel: 'What is the answer to the riddle?',
+                inputPlaceholder: 'Enter the secret word...',
+                imageUrl: 'https://cdn-icons-png.flaticon.com/512/2336/2336319.png', // Snowflake icon
+                imageWidth: 80,
+                imageAlt: 'Snowflake',
+                confirmButtonText: 'Unlock Gift 🔓',
+                confirmButtonColor: '#ff4757',
                 allowOutsideClick: false,
-                allowEscapeKey: false,
-                customClass: {
-                    popup: 'swal-popup-custom'
-                },
                 inputValidator: (value) => {
                     if (!value) {
-                        return 'You need to write something!'
+                        return 'You need to enter the answer!'
                     }
                 }
             });
 
-            // LOGIC CHECK
-            // IMPORTANT: Change 'snowflake' below if you change the puzzle answer
-            if (secret && secret.toLowerCase().trim() === 'snowflake') {
+            // Logic Check
+            if (code && code.toLowerCase().trim() === 'snowflake') {
                 Swal.fire({
-                    title: 'Access Granted!',
-                    text: 'The vault opens with a festive creak...',
+                    title: 'Access Granted ❤️',
+                    text: 'Decoding your surprise...',
                     icon: 'success',
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {
-                    // Reveal the card
                     document.getElementById('cardScene').style.opacity = '1';
                 });
             } else {
                 Swal.fire({
-                    title: 'Access Denied ❄️',
-                    text: 'That is not the secret key. The elves are confused. Reload to try again!',
                     icon: 'error',
-                    confirmButtonColor: '#2c3e50',
-                    confirmButtonText: 'Reload Page'
+                    title: 'Access Denied',
+                    text: 'That is incorrect. The elves will not open the gate.',
+                    confirmButtonText: 'Try Again'
                 }).then(() => {
                     location.reload();
                 });
             }
         });
 
-        // --- 2. CARD FLIP LOGIC ---
+        // --- FLIP LOGIC ---
         const card = document.querySelector('.card');
-        card.addEventListener('click', function() {
+        card.addEventListener('click', () => {
             card.classList.toggle('is-flipped');
         });
 
-        // --- 3. SNOWFALL EFFECT ---
+        // --- ORIGINAL SMOOTH SNOWFALL ---
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -73,7 +85,8 @@
             };
         }
 
-        for (let i = 0; i < 100; i++) {
+        // I increased the snow count to 150 to make it look even better!
+        for (let i = 0; i < 150; i++) {
             snowflakes.push(createSnowflake());
         }
 
