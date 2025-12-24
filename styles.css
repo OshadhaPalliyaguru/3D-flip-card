@@ -1,5 +1,5 @@
 :root {
-            --primary-color: #ff4757; /* Romantic Red */
+            --primary-color: #ff4757; 
             --glass-bg: rgba(255, 255, 255, 0.1);
             --glass-border: rgba(255, 255, 255, 0.2);
             --text-gold: #ffd700;
@@ -12,13 +12,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Deep Romantic Night Background */
+        
             background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
             font-family: 'Montserrat', sans-serif;
             overflow: hidden;
         }
 
-        /* --- BACKGROUND SNOW CANVAS --- */
+        
         #snow-canvas {
             position: absolute;
             top: 0;
@@ -29,13 +29,13 @@
             pointer-events: none;
         }
 
-        /* --- THE SCENE --- */
+        
         .scene {
             width: 320px;
             height: 480px;
             perspective: 1200px;
             z-index: 10;
-            opacity: 0; /* Hidden initially */
+            opacity: 0;
             transition: opacity 1.5s ease;
         }
 
@@ -69,7 +69,7 @@
             overflow: hidden;
         }
 
-        /* --- FRONT FACE (FROSTED GLASS) --- */
+      
         .card__face--front {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -78,7 +78,7 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         }
 
-        /* Glowing Border Animation */
+        
         .card__face--front::before {
             content: '';
             position: absolute;
@@ -129,7 +129,7 @@
             color: var(--primary-color);
         }
 
-        /* --- BACK FACE (MESSAGE) --- */
+     
         .card__face--back {
             background: linear-gradient(135deg, #fff0f0 0%, #ffd1d1 100%);
             transform: rotateY(180deg);
@@ -167,7 +167,7 @@
             70% { transform: scale(1); }
         }
 
-        /* --- SWEETALERT CUSTOM --- */
+       
         .swal-glass {
             background: rgba(255, 255, 255, 0.9) !important;
             backdrop-filter: blur(10px) !important;
