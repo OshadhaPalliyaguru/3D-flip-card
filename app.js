@@ -8,7 +8,7 @@
                 customClass: { popup: 'swal-glass' }
             });
 
-            // Step 1: Greeting
+           
             await Swal.fire({
                 title: '✨ Access Restricted ✨',
                 text: 'This is a secure line. Identity verification required.',
@@ -19,7 +19,7 @@
                 allowOutsideClick: false
             });
 
-            // Step 2: The Puzzle Input
+           
             const { value: code } = await Swal.fire({
                 title: 'Security Question',
                 input: 'text',
@@ -38,7 +38,7 @@
                 }
             });
 
-            // Logic Check
+            
             if (code && code.toLowerCase().trim() === 'snowflake') {
                 Swal.fire({
                     title: 'Access Granted ❤️',
@@ -61,13 +61,13 @@
             }
         });
 
-        // --- FLIP LOGIC ---
+     
         const card = document.querySelector('.card');
         card.addEventListener('click', () => {
             card.classList.toggle('is-flipped');
         });
 
-        // --- ORIGINAL SMOOTH SNOWFALL ---
+       
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -85,7 +85,7 @@
             };
         }
 
-        // I increased the snow count to 150 to make it look even better!
+        
         for (let i = 0; i < 150; i++) {
             snowflakes.push(createSnowflake());
         }
